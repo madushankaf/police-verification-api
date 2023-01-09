@@ -1,5 +1,4 @@
-public type Adress record {
-    string adress = "";
-    string no = "";
-
+public type PoliceRecord record {
+    string nic = "";
+    boolean areCriminalRecordsAvailable;
 };

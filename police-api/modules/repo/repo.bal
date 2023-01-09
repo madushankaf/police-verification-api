@@ -1,9 +1,9 @@
 import ballerina/sql;
 import ballerinax/mysql;
-import police_api.domain
+import police_api.domain;
 
 public type IRepository object {
-    public function getPoliceRecord(string nic) returns domain:PolicRecord|error;
+    public function getPoliceRecord(string nic) returns domain:PoliceRecord|error;
 };
 
 public class MySqlCitizenRepository {
@@ -14,11 +14,10 @@ public class MySqlCitizenRepository {
         self.mysqlClient = mysqlClient;
     }
 
-    public function getPoliceRecord(string nic) returns domain:PolicRecord|error {
-        domain:PolicRecord|sql:Error policRecord = self.mysqlClient->queryRow(`SELECT * FROM PoliceRecords WHERE nic > ${nic};`);
+    public function getPoliceRecord(string nic) returns domain:PoliceRecord|error {
+        domain:PoliceRecord|sql:Error policRecord = self.mysqlClient->queryRow(`SELECT * FROM PoliceRecords WHERE nic > ${nic};`);
         check self.mysqlClient.close();
         return policRecord;
     }
-
 }
 

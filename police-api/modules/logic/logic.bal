@@ -2,22 +2,22 @@ import ballerina/log;
 import police_api.repo;
 import police_api.domain;
 
-public class AdressVerifier {
-    private repo:IRepository addressRepo;
-    public function init(repo:IRepository addressRepo) {
-        self.addressRepo = addressRepo;
+public class PolicRecordVerifier {
+    private repo:IRepository policeRecordRepo;
+    public function init(repo:IRepository policeRecordRepo) {
+        self.policeRecordRepo = policeRecordRepo;
 
     }
-    public function isAdressAvailable(string no, string text) returns boolean {
+    public function isAdressAvailable(string nic) returns boolean {
 
-        domain:Adress|error address = self.addressRepo.getAdress(no, text);
-        if address is error {
-            log:printInfo(address.message());
+        domain:PoliceRecord|error policeRecord = self.policeRecordRepo.getPoliceRecord(nic);
+        if policeRecord is error {
+            log:printInfo(policeRecord.message());
 
             return false;
         }
 
-        return address.no == no;
+        return policeRecord.areCriminalRecordsAvailable;
 
     }
 
