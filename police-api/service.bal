@@ -15,9 +15,9 @@ mysql:Client dbClient = check new (host, userName, password, database, 3306);
 repo:IRepository policeRecordRepo = new repo:MySqlCitizenRepository(dbClient);
 logic:PolicRecordVerifier verifier = new (policeRecordRepo);
 
-service http:Service /CitizenInfo on new http:Listener(servicePort) {
+service http:Service /PoliceVerification on new http:Listener(servicePort) {
 
-    resource function get nic/[string nic]() returns json {
-        return {policeRecotdStatus: verifier.isAdressAvailable(nic) };
+    resource function get policeVerification/[string nic]() returns json {
+        return {policeRecotdStatus: verifier.areCrimalRecordsAvailable(nic) };
     }
 }

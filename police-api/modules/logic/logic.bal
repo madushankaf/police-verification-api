@@ -8,7 +8,7 @@ public class PolicRecordVerifier {
         self.policeRecordRepo = policeRecordRepo;
 
     }
-    public function isAdressAvailable(string nic) returns boolean {
+    public function areCrimalRecordsAvailable(string nic) returns boolean {
 
         domain:PoliceRecord|error policeRecord = self.policeRecordRepo.getPoliceRecord(nic);
         if policeRecord is error {
