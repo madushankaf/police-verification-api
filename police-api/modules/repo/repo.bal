@@ -15,7 +15,7 @@ public class MySqlCitizenRepository {
     }
 
     public function getPoliceRecord(string nic) returns domain:PoliceRecord|error {
-        domain:PoliceRecord|sql:Error policRecord = self.mysqlClient->queryRow(`SELECT * FROM PoliceRecords WHERE nic > ${nic};`);
+        domain:PoliceRecord|sql:Error policRecord = self.mysqlClient->queryRow(`SELECT * FROM PoliceRecords WHERE nic = ${nic};`);
         return policRecord;
     }
 }

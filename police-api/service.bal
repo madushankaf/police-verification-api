@@ -18,6 +18,6 @@ logic:PolicRecordVerifier verifier = new (policeRecordRepo);
 service http:Service /PoliceVerification on new http:Listener(servicePort) {
 
     resource function get policeVerification/[string nic]() returns json {
-        return {policeRecotdStatus: verifier.areCrimalRecordsAvailable(nic) };
+        return {policeRecordStatus: verifier.areCrimalRecordsAvailable(nic) };
     }
 }
